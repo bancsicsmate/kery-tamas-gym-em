@@ -133,6 +133,7 @@ class TimePlot(MotorDashboardPlot):
 
         self._violation_line_cfg = self._default_violation_line_cfg.copy()
 
+        self._scale_plots_to_data = True
         self._t = 0
         self._tau = None
         self._done = None
@@ -198,8 +199,8 @@ class TimePlot(MotorDashboardPlot):
     def _scale_y_axis(self):
         if self._scale_plots_to_data:
 
-            y_min = min(np.nanmin(self._y_data[0]), np.nanmin(self._y_data[1]))
-            y_max = max(np.nanmax(self._y_data[0]), np.nanmax(self._y_data[1]))
+            y_min = (np.nanmin(self._y_data[0])) #, np.nanmin(self._y_data[1]))
+            y_max = (np.nanmax(self._y_data[0])) #, np.nanmax(self._y_data[1]))
 
             self._axis.set_ylim(y_min-np.sign(y_min)*0.1*y_min,
                                 y_max+np.sign(y_max)*0.1*y_max)
